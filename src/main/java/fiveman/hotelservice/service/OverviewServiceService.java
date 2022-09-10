@@ -9,5 +9,5 @@ public interface OverviewServiceService {
 	OverviewService getOverviewService(long id);
 	OverviewService addOverviewService(OverviewService overviewService);
 	OverviewService updateOverviewService(OverviewService overviewService);
-	boolean deleteOverviewService(long id);
+	String deleteOverviewService(long id);
 }

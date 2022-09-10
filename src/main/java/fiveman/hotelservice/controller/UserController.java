@@ -22,8 +22,12 @@ import java.util.*;
 @Api(tags = "User")
 @RequestMapping("/api/v1")
 public class UserController {
+	
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    ModelMapper modelMapper;
 
     @GetMapping("/users")
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
@@ -57,9 +61,7 @@ public class UserController {
     public ResponseEntity<UserRequest> signup(@RequestBody UserRequest user){
         return new ResponseEntity<UserRequest>(userService.signup(user), HttpStatus.OK);
     }
-
-    @Autowired
-    ModelMapper modelMapper;
+    
 
     @GetMapping(value = "/me")
     @PreAuthorize("hasRole('ROLE_USER')")
