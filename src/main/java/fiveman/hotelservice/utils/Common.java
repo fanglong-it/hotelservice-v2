@@ -25,5 +25,49 @@ public class Common {
     //default Role
     public static final String USER = "ROLE_USER";
     public static final String ADMIN = "ROLE_ADMIN";
-
+    
+    // Code for access is denied
+    public static final String ACCESS_DENY = "HS-00000";
+    
+    // Code - Message
+    public static final String SIGN_UP_SUCCESS = "HS-00001";
+    public static final String SIGN_UP_FAIL = "HS-00002"; 
+    
+    // Code for adding - success and fail  announcement
+    public static final String ADDING_SUCCESS = "HS-00010";
+    public static final String ADDING_FAIL = "HS-00011";
+    
+    // Code for updating - success and fail  announcement
+    public static final String UPDATE_SUCCESS = "HS-00012";
+    public static final String UPDATE_FAIL = "HS-00013";
+    
+    // Code for delete - success and fail  announcement
+    public static final String DELETE_SUCCESS = "HS-00014";
+    public static final String DELETE_FAIL = "HS-00015";
+    
+    // Code for getting - success and fail  announcement
+    public static final String GET_FAIL = "HS-00016";
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

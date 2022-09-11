@@ -3,6 +3,7 @@ package fiveman.hotelservice.security;
 import fiveman.hotelservice.entities.Role;
 import fiveman.hotelservice.entities.User;
 import fiveman.hotelservice.exception.AppException;
+import fiveman.hotelservice.response.CustomResponseObject;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
@@ -82,7 +83,7 @@ public class JwtTokenProvider {
       Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
       return true;
     } catch (JwtException | IllegalArgumentException e) {
-      throw new AppException(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Expired or invalid JWT token");
+      throw new AppException(HttpStatus.INTERNAL_SERVER_ERROR.value(), new CustomResponseObject(""+ HttpStatus.INTERNAL_SERVER_ERROR, "Expired or invalid JWT token"));
     }
   }
 
