@@ -10,7 +10,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import fiveman.hotelservice.entities.OverviewService;
+import fiveman.hotelservice.response.CustomResponseObject;
 import fiveman.hotelservice.service.OverviewServiceService;
+import fiveman.hotelservice.utils.Common;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
@@ -22,7 +24,7 @@ public class OverviewServiceController {
 	private OverviewServiceService overviewServiceService;
 	
 	@GetMapping("/overview/getOverviewServices")
-	@PreAuthorize("hasRole('ROLE_USER') or isAnonymous()")
+	@PreAuthorize("hasRole('ROLE_USER')")
 	@ApiResponses(value = {//
 			@ApiResponse(code = 400, message = "Something went wrong"), //
 			@ApiResponse(code = 403, message = "Access denied"), //
@@ -49,8 +51,9 @@ public class OverviewServiceController {
 			@ApiResponse(code = 400, message = "Something went wrong"), //
 			@ApiResponse(code = 403, message = "Access denied"), //
 			@ApiResponse(code = 500, message = "Expired or invalid JWT token")})
-	public ResponseEntity<OverviewService> addOverviewService(@RequestBody OverviewService overviewService){
-		return new ResponseEntity<OverviewService>(overviewServiceService.addOverviewService(overviewService), HttpStatus.OK);
+	public ResponseEntity<CustomResponseObject> addOverviewService(@RequestBody OverviewService overviewService){
+		overviewServiceService.addOverviewService(overviewService);
+		return new ResponseEntity<CustomResponseObject>(new CustomResponseObject(Common.ADDING_SUCCESS, "Add Overview success" ), HttpStatus.OK);
 	}
 
 	@PostMapping("/overview/updateOverviewService")
@@ -59,8 +62,9 @@ public class OverviewServiceController {
 			@ApiResponse(code = 400, message = "Something went wrong"), //
 			@ApiResponse(code = 403, message = "Access denied"), //
 			@ApiResponse(code = 500, message = "Expired or invalid JWT token")})
-	public ResponseEntity<OverviewService> updateOverviewService(@RequestBody OverviewService overviewService){
-		return new ResponseEntity<OverviewService>(overviewServiceService.updateOverviewService(overviewService), HttpStatus.OK);
+	public ResponseEntity<CustomResponseObject> updateOverviewService(@RequestBody OverviewService overviewService){
+		overviewServiceService.updateOverviewService(overviewService);
+		return new ResponseEntity<CustomResponseObject>(new CustomResponseObject(Common.UPDATE_SUCCESS, "Update Overview success" ), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/overview/deleteOverview/{id}")
@@ -69,8 +73,9 @@ public class OverviewServiceController {
 			@ApiResponse(code = 400, message = "Something went wrong"), //
 			@ApiResponse(code = 403, message = "Access denied"), //
 			@ApiResponse(code = 500, message = "Expired or invalid JWT token")})
-	public ResponseEntity<String> deleteOverviewService(@PathVariable("id") long id){
-		return new ResponseEntity<String>(overviewServiceService.deleteOverviewService(id), HttpStatus.OK);
+	public ResponseEntity<CustomResponseObject> deleteOverviewService(@PathVariable("id") long id){
+		overviewServiceService.deleteOverviewService(id);
+		return new ResponseEntity<CustomResponseObject>(new CustomResponseObject(Common.DELETE_SUCCESS, "Delete Overview success" ), HttpStatus.OK);
 	}
 
 }

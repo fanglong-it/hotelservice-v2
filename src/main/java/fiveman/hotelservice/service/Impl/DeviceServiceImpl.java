@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 import fiveman.hotelservice.entities.Device;
 import fiveman.hotelservice.exception.AppException;
 import fiveman.hotelservice.repository.DeviceRepository;
+import fiveman.hotelservice.response.CustomResponseObject;
 import fiveman.hotelservice.service.DeviceService;
+import fiveman.hotelservice.utils.Common;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -40,7 +42,7 @@ public class DeviceServiceImpl implements DeviceService {
 //						dto.getProductShortDesc(), dto.getProductLongDesc(), dto.getProductThumb(), dto.getProductImage(), dto.getProductUpdateDate(), dto.getProductStock(), dto.getProductLive(),
 //						dto.getProductUnlimited(), listOption, listOptionGroups);
 //				return res;
-				throw new AppException(HttpStatus.NOT_FOUND.value(), "Not found id = " + id);
+				throw new AppException(HttpStatus.NOT_FOUND.value(), new CustomResponseObject(Common.GET_FAIL, "Not Found Device"));
 			}
 			logger.info("START GET DEVICE BY ID");
 			return dto;

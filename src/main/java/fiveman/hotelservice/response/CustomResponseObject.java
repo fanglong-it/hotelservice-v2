@@ -1,32 +1,16 @@
 package fiveman.hotelservice.response;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 public class CustomResponseObject {
-	private int code;
+	private String code;
 	private String message;
-	private Object data;
-	
-	public CustomResponseObject(int code) {
-		this.code = code;
-	}
-	
-	public CustomResponseObject(String message) {
-		this.message = message;
-	}
-	
-	public CustomResponseObject(int code, String message) {
-		this.code = code;
-		this.message = message;
-	}
-	
-	public CustomResponseObject(int code, String message, Object data) {
-		this.code = code;
-		this.message = message;
-		this.data = data;
-	}
 	
 }

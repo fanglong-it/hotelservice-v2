@@ -3,8 +3,10 @@ package fiveman.hotelservice.controller;
 
 import fiveman.hotelservice.entities.User;
 import fiveman.hotelservice.request.UserRequest;
+import fiveman.hotelservice.response.CustomResponseObject;
 import fiveman.hotelservice.response.UserResponse;
 import fiveman.hotelservice.service.UserService;
+import fiveman.hotelservice.utils.Common;
 import io.swagger.annotations.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,14 +37,14 @@ public class UserController {
             @ApiResponse(code = 400, message = "Something went wrong"), //
             @ApiResponse(code = 403, message = "Access denied"), //
             @ApiResponse(code = 500, message = "Expired or invalid JWT token")})
-    @ApiOperation(value = "${UserController.getUsers}", response = User.class, authorizations = { @Authorization(value="apiKey") })
+    @ApiOperation(value = "GetAllUser", response = User.class, authorizations = { @Authorization(value="apiKey") })
     public ResponseEntity<List<UserResponse>> getUsers(){
         return ResponseEntity.ok().body(userService.getUsers());
     }
 
 
     @PostMapping("/login")
-    @ApiOperation(value = "${UserController.login}")
+    @ApiOperation(value = "Login")
     @ApiResponses(value = {//
             @ApiResponse(code = 400, message = "Something went wrong"), //
             @ApiResponse(code = 422, message = "Invalid username/password supplied")})
@@ -53,19 +55,20 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    @ApiOperation( value = "{Usercontroller.signup}")
+    @ApiOperation( value = "Registration")
     @ApiResponses(value = {//
             @ApiResponse(code = 400, message = "Something went wrong"), //
             @ApiResponse(code = 403, message = "Access denied"), //
             @ApiResponse(code = 500, message = "Expired or invalid JWT token")})
-    public ResponseEntity<UserRequest> signup(@RequestBody UserRequest user){
-        return new ResponseEntity<UserRequest>(userService.signup(user), HttpStatus.OK);
+    public ResponseEntity<CustomResponseObject> signup(@RequestBody UserRequest user){
+    	userService.signup(user);
+        return new ResponseEntity<CustomResponseObject>(new CustomResponseObject(Common.ADDING_SUCCESS, "Add user success: " + user.getName()), HttpStatus.OK);
     }
     
 
     @GetMapping(value = "/me")
     @PreAuthorize("hasRole('ROLE_USER')")
-    @ApiOperation(value = "${UserController.me}", response = UserResponse.class, authorizations = { @Authorization(value="apiKey") })
+    @ApiOperation(value = "Get Current User", response = UserResponse.class, authorizations = { @Authorization(value="apiKey") })
     @ApiResponses(value = {//
             @ApiResponse(code = 400, message = "Something went wrong"), //
             @ApiResponse(code = 403, message = "Access denied"), //
