@@ -85,11 +85,11 @@ public class OverviewServiceServiceImpl implements OverviewServiceService{
 	}
 
 	@Override
-	public boolean deleteOverviewService(long id) {
+	public String deleteOverviewService(long id) {
 		OverviewService overviewService = overviewServiceRepository.findOverviewServiceById(id);
 		if(overviewService != null){
 			overviewServiceRepository.deleteById(id);
-			return true;
+			return "Delete successfully";
 		}else{
 			throw new AppException(HttpStatus.NOT_FOUND.value(), "Not found id = " + id);
 		}

@@ -38,7 +38,7 @@ public class OverviewServiceController {
 			@ApiResponse(code = 400, message = "Something went wrong"), //
 			@ApiResponse(code = 403, message = "Access denied"), //
 			@ApiResponse(code = 500, message = "Expired or invalid JWT token")})
-	public ResponseEntity<OverviewService> getOverviewService(@PathVariable long id){
+	public ResponseEntity<OverviewService> getOverviewService(@PathVariable("id") long id){
 		return new ResponseEntity<OverviewService>(overviewServiceService.getOverviewService(id), HttpStatus.OK);
 	}
 
@@ -69,8 +69,8 @@ public class OverviewServiceController {
 			@ApiResponse(code = 400, message = "Something went wrong"), //
 			@ApiResponse(code = 403, message = "Access denied"), //
 			@ApiResponse(code = 500, message = "Expired or invalid JWT token")})
-	public ResponseEntity<String> deleteOverviewService(@PathVariable("id") Long id){
-		return new ResponseEntity<String>(String.valueOf(overviewServiceService.deleteOverviewService(id)), HttpStatus.OK);
+	public ResponseEntity<String> deleteOverviewService(@PathVariable("id") long id){
+		return new ResponseEntity<String>(overviewServiceService.deleteOverviewService(id), HttpStatus.OK);
 	}
 
 }

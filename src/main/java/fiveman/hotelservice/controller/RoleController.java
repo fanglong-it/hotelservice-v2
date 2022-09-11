@@ -55,10 +55,10 @@ public class RoleController {
     @PostMapping("/role/addRoleToUser")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ApiOperation(value = "${UserController.addRoleToUser}")
-    @ApiResponses(value = {//
-            @ApiResponse(code = 400, message = "Something went wrong"), //
-            @ApiResponse(code = 403, message = "Access denied"), //
-            @ApiResponse(code = 500, message = "Expired or invalid JWT token")})
+//    @ApiResponses(value = {//
+//            @ApiResponse(code = 400, message = "Something went wrong"), //
+//            @ApiResponse(code = 403, message = "Access denied"), //
+//            @ApiResponse(code = 500, message = "Expired or invalid JWT token")})
     public ResponseEntity<CustomResponseObject> addRoleToUser(@RequestBody RoleToUserRequest form){
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/role/save").toUriString());
         CustomResponseObject result = new CustomResponseObject("add role successfully for account " + userService.addRoleToUser(form.getUsername(), form.getRolename()));

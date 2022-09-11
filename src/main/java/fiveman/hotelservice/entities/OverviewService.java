@@ -27,6 +27,7 @@ public class OverviewService {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty(required = true)
 	private long id;
+	
     private String title;
     private String imageUrl;
     private String description;

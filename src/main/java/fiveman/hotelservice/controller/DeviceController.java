@@ -3,7 +3,7 @@ package fiveman.hotelservice.controller;
 
 import fiveman.hotelservice.entities.Device;
 import fiveman.hotelservice.service.DeviceService;
-
+import fiveman.hotelservice.utils.Utilities;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
