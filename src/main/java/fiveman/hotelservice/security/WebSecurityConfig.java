@@ -1,9 +1,11 @@
 package fiveman.hotelservice.security;
 
+import fiveman.hotelservice.response.CustomResponseObject;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,9 +15,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.nio.file.AccessDeniedException;
 
 @Configuration
 @EnableWebSecurity
@@ -48,7 +54,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.anyRequest().authenticated();
 
 		// If a user try to access a resource without having enough permissions
-		http.exceptionHandling().accessDeniedPage("/accessDenied/msg");
+//		http.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint());
+
+
+		http.exceptionHandling().accessDeniedPage("/api/msg");
 
 		// Apply JWT
 		http.apply(new JwtTokenFilterConfigurer(jwtTokenProvider));
@@ -90,5 +99,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
 		return source;
 	}
+
+	@Bean
+	public AuthenticationEntryPoint authenticationEntryPoint(){
+		return new CustomAuthenticationEntryPoint();
+	}
+
 
 }
