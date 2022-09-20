@@ -99,25 +99,21 @@ public class OverviewServiceServiceImpl implements OverviewServiceService {
 		oldOverviewService = checkOverview(newOverviewService);
 		overviewServiceRepository.save(oldOverviewService);
 		
-		logger.info("END UPPDATE OVERVIEW");
+		logger.info("END UPDATE OVERVIEW");
 		return overviewServiceRepository.findOverviewServiceById(newOverviewService.getId());
 	}
 
 	@Override
 	public String deleteOverviewService(long id) {
 		logger.info("START DELETE OVERVIEW");
-		
 		OverviewService overviewService = overviewServiceRepository.findOverviewServiceById(id);
 		if (overviewService == null) {
 			throw new AppException(HttpStatus.NOT_FOUND.value(),
 					new CustomResponseObject(Common.DELETE_FAIL, "delete overview is failed"));
 		}
-
 		overviewServiceRepository.deleteById(id);
-		
 		logger.info("END DELETE OVERVIEW");
 		return "Delete successfully";
-
 	}
 
 }
