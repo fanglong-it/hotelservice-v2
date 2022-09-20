@@ -45,6 +45,17 @@ public class RoomTypeController {
         return new ResponseEntity<RoomType>(roomTypeService.getRoomType(id), HttpStatus.OK);
     }
 
+    @PutMapping("/RoomType/updateRoomType")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @ApiResponses(value = {//
+            @ApiResponse(code = 400, message = "Something went wrong"), //
+            @ApiResponse(code = 403, message = "Access denied"), //
+            @ApiResponse(code = 500, message = "Expired or invalid JWT token")})
+    public ResponseEntity<CustomResponseObject> updateRoomType(@RequestBody RoomType roomType){
+        roomTypeService.updateRoomType(roomType);
+        return new ResponseEntity<>(new CustomResponseObject(Common.UPDATE_SUCCESS, "Update Room Type Success" ), HttpStatus.OK);
+    }
+
     @PostMapping("/RoomType/addRoomType")
     @PreAuthorize("hasRole('ROLE_USER')")
     @ApiResponses(value = {//
@@ -53,7 +64,7 @@ public class RoomTypeController {
             @ApiResponse(code = 500, message = "Expired or invalid JWT token")})
     public ResponseEntity<CustomResponseObject> addRoomType(@RequestBody RoomType roomType){
         roomTypeService.addRoomType(roomType);
-        return new ResponseEntity<CustomResponseObject>(new CustomResponseObject(Common.ADDING_SUCCESS, "Add Room Type Success" ), HttpStatus.OK);
+        return new ResponseEntity<>(new CustomResponseObject(Common.ADDING_SUCCESS, "Add Room Type Success" ), HttpStatus.OK);
     }
 
 
@@ -63,8 +74,9 @@ public class RoomTypeController {
             @ApiResponse(code = 400, message = "Something went wrong"), //
             @ApiResponse(code = 403, message = "Access denied"), //
             @ApiResponse(code = 500, message = "Expired or invalid JWT token")})
-    public ResponseEntity<String> deleteRoomType(@PathVariable("id") long id){
-        return new ResponseEntity<String>(roomTypeService.deleteRoomType(id), HttpStatus.OK);
+    public ResponseEntity<CustomResponseObject> deleteRoomType(@PathVariable("id") long id){
+        roomTypeService.deleteRoomType(id);
+        return new ResponseEntity<>(new CustomResponseObject(Common.DELETE_SUCCESS, "Delete Room Success"), HttpStatus.OK);
     }
 
 
