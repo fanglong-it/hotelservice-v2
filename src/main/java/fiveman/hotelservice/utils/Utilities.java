@@ -12,9 +12,8 @@ public class Utilities {
 	}
 	
 	public static boolean isLong(String s) {
-		long tmp;
 	    try { 
-	        tmp = Long.parseLong(s); 
+	       Long tmp = Long.parseLong(s); 
 	    } catch(NumberFormatException e) { 
 	        return false; 
 	    } catch(NullPointerException e) {
