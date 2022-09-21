@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import fiveman.hotelservice.response.CustomResponseObject;
 
-import org.springframework.security.access.AccessDeniedException;
+//import org.springframework.security.access.AccessDeniedException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -20,11 +20,11 @@ public class GlobalExceptionHandler {
 				.body(new CustomResponseObject(String.valueOf(e.getCode()), e.getErr().getMessage()));
 	}
 
-	@ExceptionHandler(AccessDeniedException.class)
-	public ResponseEntity<CustomResponseObject> AccessDeniedException(AccessDeniedException e) {
-		logger.info(e.getMessage());
-		return ResponseEntity.status(403).body(new CustomResponseObject(String.valueOf(403), "Access is denied"));
-	}
+//	@ExceptionHandler(AccessDeniedException.class)
+//	public ResponseEntity<CustomResponseObject> AccessDeniedException(AccessDeniedException e) {
+//		logger.info(e.getMessage());
+//		return ResponseEntity.status(403).body(new CustomResponseObject(String.valueOf(403), "Access is denied"));
+//	}
 
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<CustomResponseObject> handleUnwantedException(Exception e) {
