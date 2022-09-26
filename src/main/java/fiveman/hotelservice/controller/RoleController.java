@@ -18,10 +18,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import springfox.documentation.annotations.ApiIgnore;
-
-import java.net.URI;
 
 @RestController
 @Api(tags = "Role")
@@ -62,7 +59,6 @@ public class RoleController {
 //            @ApiResponse(code = 403, message = "Access denied"), //
 //            @ApiResponse(code = 500, message = "Expired or invalid JWT token")})
     public ResponseEntity<CustomResponseObject> addRoleToUser(@RequestBody RoleToUserRequest form){
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/role/save").toUriString());
         CustomResponseObject result = new CustomResponseObject(Common.ADDING_SUCCESS, "Add role to user success");
         return new ResponseEntity<CustomResponseObject>(result, HttpStatus.OK);
     }

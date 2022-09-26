@@ -2,12 +2,7 @@ package fiveman.hotelservice.entities;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Set;
 
 @Entity
 @Data

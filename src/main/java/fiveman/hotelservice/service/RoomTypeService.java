@@ -1,6 +1,4 @@
 package fiveman.hotelservice.service;
-
-import fiveman.hotelservice.entities.OverviewService;
 import fiveman.hotelservice.entities.RoomType;
 
 import java.util.List;

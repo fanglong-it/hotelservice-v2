@@ -1,7 +1,5 @@
 package fiveman.hotelservice.utils;
 
-import org.springframework.util.StringUtils;
-
 public class Utilities {
 
 	public static boolean isEmptyString(String result) {
@@ -11,15 +9,15 @@ public class Utilities {
 		return false;
 	}
 	
-	public static boolean isLong(String s) {
-	    try { 
-	       Long tmp = Long.parseLong(s); 
-	    } catch(NumberFormatException e) { 
-	        return false; 
-	    } catch(NullPointerException e) {
-	        return false;
-	    }
-	    return true;
-	}
+	// public static boolean isLong(String s) {
+	//     try { 
+	//        Long tmp = Long.parseLong(s); 
+	//     } catch(NumberFormatException e) { 
+	//         return false; 
+	//     } catch(NullPointerException e) {
+	//         return false;
+	//     }
+	//     return true;
+	// }
 	
 }

@@ -1,7 +1,5 @@
 package fiveman.hotelservice.security;
 
-import fiveman.hotelservice.entities.Role;
-import fiveman.hotelservice.entities.User;
 import fiveman.hotelservice.exception.AppException;
 import fiveman.hotelservice.response.CustomResponseObject;
 import io.jsonwebtoken.Claims;
@@ -16,12 +14,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
-import java.util.stream.Collectors;
-
 @Component
 public class JwtTokenProvider {
 
