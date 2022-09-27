@@ -4,11 +4,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.aspectj.lang.annotation.RequiredTypes;
-import org.springframework.beans.factory.annotation.Required;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @AllArgsConstructor

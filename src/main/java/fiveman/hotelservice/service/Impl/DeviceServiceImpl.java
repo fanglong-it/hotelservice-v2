@@ -15,7 +15,6 @@ import fiveman.hotelservice.repository.DeviceRepository;
 import fiveman.hotelservice.response.CustomResponseObject;
 import fiveman.hotelservice.service.DeviceService;
 import fiveman.hotelservice.utils.Common;
-import lombok.extern.slf4j.Slf4j;
 
 @Service
 public class DeviceServiceImpl implements DeviceService {
