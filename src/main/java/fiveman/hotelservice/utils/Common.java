@@ -26,6 +26,13 @@ public class Common {
     public static final String ROOM_TYPE_IMAGE_URL = "Not found Image";
     public static final String ROOM_TYPE_DESCRIPTION = "No Description";
 
+
+    // Default value for Services
+    public static final String SERVICE_NAME = "Default name";
+    public static final String SERVICE_PICTURE = "Not found Image";
+    public static final String SERVICE_DESCRIPTION = "Default Description";
+    public static final boolean SERVICE_ISEXTERNAL = false;
+
     //default Role
     public static final String USER = "ROLE_USER";
     public static final String ADMIN = "ROLE_ADMIN";

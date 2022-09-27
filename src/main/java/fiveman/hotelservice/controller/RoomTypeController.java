@@ -1,6 +1,5 @@
 package fiveman.hotelservice.controller;
 
-import fiveman.hotelservice.entities.OverviewService;
 import fiveman.hotelservice.entities.RoomType;
 import fiveman.hotelservice.response.CustomResponseObject;
 import fiveman.hotelservice.service.RoomTypeService;
