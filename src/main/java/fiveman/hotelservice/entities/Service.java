@@ -8,6 +8,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,8 +26,11 @@ public class Service {
     private String picture;
     private double price;
     private String description;
+
     private boolean isExternal;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = ServiceCategory.class)
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER,
+    cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private ServiceCategory serviceCategory;
 }
