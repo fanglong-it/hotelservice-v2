@@ -25,7 +25,6 @@ public class SpringFoxConfig {
 
     private SecurityContext securityContext(){
         return SecurityContext.builder().securityReferences(defaultAuth()).build();
-
     }
 
     private List<SecurityReference> defaultAuth(){
@@ -51,9 +50,9 @@ public class SpringFoxConfig {
         return new ApiInfo(
                 "My REST API",
                 "Some custom description of API.",
-                "1.0",
+                "2.0",
                 "Terms of service",
-                new Contact("Sallo Szrajbman", "www.baeldung.com", "salloszraj@gmail.com"),
+                new Contact("Fanglong-pc", "https://github.com/fanglong-it", "fang.longpc@gmail.com"),
                 "License of API",
                 "API license URL",
                 Collections.emptyList());
