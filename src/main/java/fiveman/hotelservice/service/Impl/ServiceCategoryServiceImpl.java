@@ -5,6 +5,7 @@ import fiveman.hotelservice.exception.AppException;
 import fiveman.hotelservice.repository.ServiceCategoryRepository;
 import fiveman.hotelservice.response.CustomResponseObject;
 import fiveman.hotelservice.service.ServiceCategoryService;
+import fiveman.hotelservice.utils.Common;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,7 +31,7 @@ public class ServiceCategoryServiceImpl implements ServiceCategoryService {
         if(!serviceCategoryRepository.existsById(serviceCategory.getId())){
             log.info("START SAVING SERVICE_CATEGORY");
             serviceCategoryRepository.save(serviceCategory);
-            return new CustomResponseObject(HttpStatus.OK.toString(), "Create Success");
+            return new CustomResponseObject(Common.ADDING_SUCCESS, "Create Success");
         }
         throw new AppException(HttpStatus.ALREADY_REPORTED.value(),
                 new CustomResponseObject(HttpStatus.ALREADY_REPORTED.toString(),

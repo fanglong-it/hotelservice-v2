@@ -46,9 +46,10 @@ public class ServiceServiceImpl implements ServiceService {
             log.info("ID IS EXIST START OF UPDATE SERVICE");
             serviceRepository.save(service);
             serviceRepository.getServiceById(service.getId());
-            return new CustomResponseObject(HttpStatus.OK.toString(), "Update success!");
+            return new CustomResponseObject(Common.UPDATE_SUCCESS, "Update success!");
         }
-        throw new AppException(HttpStatus.NOT_FOUND.value(), new CustomResponseObject(HttpStatus.NOT_FOUND.toString(),
+        throw new AppException(HttpStatus.NOT_FOUND.value(),
+                new CustomResponseObject(Common.UPDATE_FAIL,
                 "Not found service by id = " + service.getId()));
     }
 
@@ -61,11 +62,11 @@ public class ServiceServiceImpl implements ServiceService {
         if (serviceRepository.existsById(id)) {
             log.info("START OF DELETE SERVICE BY ID");
             serviceRepository.delete(serviceRepository.getServiceById(id));
-            return new CustomResponseObject(HttpStatus.OK.toString(), "Delete success!");
+            return new CustomResponseObject(Common.DELETE_SUCCESS, "Delete success!");
 
         }
         throw new AppException(HttpStatus.NOT_FOUND.value(),
-                new CustomResponseObject(HttpStatus.NOT_FOUND.toString(), "Not found service by id = " + id));
+                new CustomResponseObject(Common.DELETE_FAIL, "Not found service by id = " + id));
     }
 
     @Override
@@ -73,10 +74,10 @@ public class ServiceServiceImpl implements ServiceService {
         if (!serviceRepository.existsById(service.getId())) {
             service.setServiceCategory(serviceCategoryService.getServiceCategoryById(service.getServiceCategory().getId()));
             serviceRepository.save(service);
-            return new CustomResponseObject(HttpStatus.OK.toString(), "Save success!");
+            return new CustomResponseObject(Common.ADDING_SUCCESS, "Save success!");
         }
         throw new AppException(HttpStatus.ALREADY_REPORTED.value(),
-                new CustomResponseObject(HttpStatus.NOT_FOUND.toString(), "Is exist service id =" + service.getId()));
+                new CustomResponseObject(Common.ADDING_FAIL, "Is exist service id =" + service.getId()));
     }
 
 }

@@ -5,6 +5,7 @@ import fiveman.hotelservice.exception.AppException;
 import fiveman.hotelservice.repository.PictureRepository;
 import fiveman.hotelservice.response.CustomResponseObject;
 import fiveman.hotelservice.service.PictureService;
+import fiveman.hotelservice.utils.Common;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,7 +35,7 @@ public class PictureServiceImpl implements PictureService {
         if(!pictureRepository.existsById(picture.getId())){
             pictureRepository.save(picture);
             log.info("CREATE SUCCESS PICTURE");
-            return new CustomResponseObject(HttpStatus.CREATED.toString(), "Create Success");
+            return new CustomResponseObject(Common.ADDING_SUCCESS, "Create Success");
         }
         throw new AppException(HttpStatus.ALREADY_REPORTED.value(), new CustomResponseObject(HttpStatus.ALREADY_REPORTED.toString(), "Existed id = " + picture.getId()));
     }
@@ -49,7 +50,7 @@ public class PictureServiceImpl implements PictureService {
     public CustomResponseObject updatePicture(Picture picture) {
         pictureRepository.save(picture);
         log.info("UPDATED PICTURE");
-        return new CustomResponseObject(HttpStatus.OK.toString(), "Update Success");
+        return new CustomResponseObject(Common.UPDATE_SUCCESS, "Update Success");
     }
 
     @Override
@@ -58,7 +59,7 @@ public class PictureServiceImpl implements PictureService {
         if(pictureRepository.existsById(id)){
             log.info("EXIST ID START DELETE PICTURE");
             pictureRepository.deleteById(id);
-            return new CustomResponseObject(HttpStatus.GONE.toString(), "Delete Success");
+            return new CustomResponseObject(Common.DELETE_SUCCESS, "Delete Success");
         }
         throw new AppException(HttpStatus.NOT_FOUND.value(), new CustomResponseObject(HttpStatus.NOT_FOUND.toString(), "Not found id = " + id));
     }
