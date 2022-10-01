@@ -4,6 +4,7 @@ package fiveman.hotelservice.controller;
 import fiveman.hotelservice.entities.Service;
 import fiveman.hotelservice.entities.ServiceCategory;
 import fiveman.hotelservice.request.ServiceCategoryRequest;
+import fiveman.hotelservice.response.CustomResponseObject;
 import fiveman.hotelservice.service.ServiceCategoryService;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -40,7 +41,7 @@ public class ServiceCategoryController {
 
     @PostMapping("/serviceCategory")
     @PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<ServiceCategory> saveServiceCategory(@RequestBody @Valid ServiceCategoryRequest serviceCategoryRequest){
+    public ResponseEntity<CustomResponseObject> saveServiceCategory(@RequestBody @Valid ServiceCategoryRequest serviceCategoryRequest){
        ServiceCategory serviceCategory = modelMapper.map(serviceCategoryRequest, ServiceCategory.class);
         return new ResponseEntity<>(serviceCategoryService.saveServiceCategory(serviceCategory), HttpStatus.OK);
     }

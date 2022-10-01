@@ -2,6 +2,7 @@ package fiveman.hotelservice.controller;
 
 
 import fiveman.hotelservice.entities.Hotel;
+import fiveman.hotelservice.response.CustomResponseObject;
 import fiveman.hotelservice.service.HotelService;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -36,7 +37,7 @@ public class HotelController {
 
     @PostMapping("/hotel")
     @PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<Hotel> saveHotel(@RequestBody @Valid Hotel hotel){
+    public ResponseEntity<CustomResponseObject> saveHotel(@RequestBody @Valid Hotel hotel){
         return new ResponseEntity<>(hotelService.saveHotel(hotel), HttpStatus.OK);
     }
 

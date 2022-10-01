@@ -2,6 +2,7 @@ package fiveman.hotelservice.service;
 
 import fiveman.hotelservice.entities.Picture;
 import fiveman.hotelservice.entities.Picture;
+import fiveman.hotelservice.response.CustomResponseObject;
 
 import java.util.List;
 
@@ -9,8 +10,8 @@ public interface PictureService {
 
     List<Picture> getAllPicture();
     List<Picture> getPictureByPictureType(String type);
-    Picture savePicture(Picture picture);
+    CustomResponseObject savePicture(Picture picture);
     Picture getPictureById(Long id);
-    Picture updatePicture(Picture picture);
-    String deletePicture(Long id);
+    CustomResponseObject updatePicture(Picture picture);
+    CustomResponseObject deletePicture(Long id);
 }

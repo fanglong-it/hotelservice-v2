@@ -5,6 +5,7 @@ import fiveman.hotelservice.exception.AppException;
 import fiveman.hotelservice.repository.ServiceCategoryRepository;
 import fiveman.hotelservice.response.CustomResponseObject;
 import fiveman.hotelservice.service.ServiceCategoryService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@Slf4j
 public class ServiceCategoryServiceImpl implements ServiceCategoryService {
 
     @Autowired
@@ -19,13 +21,16 @@ public class ServiceCategoryServiceImpl implements ServiceCategoryService {
 
     @Override
     public ServiceCategory getServiceCategoryById(Long id) {
+      log.info("START GETTING SERVICE_CATEGORY");
         return serviceCategoryRepository.getServiceCategoryById(id);
     }
 
     @Override
-    public ServiceCategory saveServiceCategory(ServiceCategory serviceCategory) {
+    public CustomResponseObject saveServiceCategory(ServiceCategory serviceCategory) {
         if(!serviceCategoryRepository.existsById(serviceCategory.getId())){
-            return serviceCategoryRepository.save(serviceCategory);
+            log.info("START SAVING SERVICE_CATEGORY");
+            serviceCategoryRepository.save(serviceCategory);
+            return new CustomResponseObject(HttpStatus.OK.toString(), "Create Success");
         }
         throw new AppException(HttpStatus.ALREADY_REPORTED.value(),
                 new CustomResponseObject(HttpStatus.ALREADY_REPORTED.toString(),
@@ -35,6 +40,7 @@ public class ServiceCategoryServiceImpl implements ServiceCategoryService {
 
     @Override
     public List<ServiceCategory> getServiceCategories() {
+        log.info("START GET ALL SERVICE_CATEGORY");
         return serviceCategoryRepository.findAll();
     }
 }

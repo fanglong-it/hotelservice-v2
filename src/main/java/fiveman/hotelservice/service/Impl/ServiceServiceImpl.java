@@ -40,12 +40,13 @@ public class ServiceServiceImpl implements ServiceService {
 
 
     @Override
-    public fiveman.hotelservice.entities.Service updateService(fiveman.hotelservice.entities.Service service) {
+    public CustomResponseObject updateService(fiveman.hotelservice.entities.Service service) {
         log.info("CHECKING ID FOR UPDATE SERVICE");
         if (serviceRepository.existsById(service.getId())) {
             log.info("ID IS EXIST START OF UPDATE SERVICE");
             serviceRepository.save(service);
-            return serviceRepository.getServiceById(service.getId());
+            serviceRepository.getServiceById(service.getId());
+            return new CustomResponseObject(HttpStatus.OK.toString(), "Update success!");
         }
         throw new AppException(HttpStatus.NOT_FOUND.value(), new CustomResponseObject(HttpStatus.NOT_FOUND.toString(),
                 "Not found service by id = " + service.getId()));
@@ -55,23 +56,24 @@ public class ServiceServiceImpl implements ServiceService {
     ServiceCategoryService serviceCategoryService;
 
     @Override
-    public String deleteService(Long id) {
+    public CustomResponseObject deleteService(Long id) {
         log.info("CHECKING ID FOR DELETE SERVICE");
         if (serviceRepository.existsById(id)) {
             log.info("START OF DELETE SERVICE BY ID");
             serviceRepository.delete(serviceRepository.getServiceById(id));
-            return "deleted";
+            return new CustomResponseObject(HttpStatus.OK.toString(), "Delete success!");
+
         }
         throw new AppException(HttpStatus.NOT_FOUND.value(),
                 new CustomResponseObject(HttpStatus.NOT_FOUND.toString(), "Not found service by id = " + id));
     }
 
     @Override
-    public fiveman.hotelservice.entities.Service saveServices(fiveman.hotelservice.entities.Service service) {
+    public CustomResponseObject saveServices(fiveman.hotelservice.entities.Service service) {
         if (!serviceRepository.existsById(service.getId())) {
             service.setServiceCategory(serviceCategoryService.getServiceCategoryById(service.getServiceCategory().getId()));
             serviceRepository.save(service);
-            return serviceRepository.getServiceById(service.getId());
+            return new CustomResponseObject(HttpStatus.OK.toString(), "Save success!");
         }
         throw new AppException(HttpStatus.ALREADY_REPORTED.value(),
                 new CustomResponseObject(HttpStatus.NOT_FOUND.toString(), "Is exist service id =" + service.getId()));

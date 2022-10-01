@@ -1,6 +1,7 @@
 package fiveman.hotelservice.controller;
 
 import fiveman.hotelservice.entities.Picture;
+import fiveman.hotelservice.response.CustomResponseObject;
 import fiveman.hotelservice.service.PictureService;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -43,19 +44,19 @@ public class PictureController {
 
     @PostMapping("/picture")
     @PreAuthorize("isAnonymous()")
-    public ResponseEntity<Picture> savePicture(@RequestBody @Valid Picture picture){
+    public ResponseEntity<CustomResponseObject> savePicture(@RequestBody @Valid Picture picture){
         return new ResponseEntity<>(pictureService.savePicture(picture), HttpStatus.OK);
     }
 
     @PutMapping("/picture")
     @PreAuthorize("isAnonymous()")
-    public ResponseEntity<Picture> updatePicture(@Valid @RequestBody Picture picture){
+    public ResponseEntity<CustomResponseObject> updatePicture(@Valid @RequestBody Picture picture){
         return new ResponseEntity<>(pictureService.updatePicture(picture), HttpStatus.OK);
     }
 
     @DeleteMapping("/picture/{id}")
     @PreAuthorize("isAnonymous()")
-    public ResponseEntity<String> deletePicture(@PathVariable("id") Long id){
+    public ResponseEntity<CustomResponseObject> deletePicture(@PathVariable("id") Long id){
         return new ResponseEntity<>(pictureService.deletePicture(id), HttpStatus.OK);
     }
 

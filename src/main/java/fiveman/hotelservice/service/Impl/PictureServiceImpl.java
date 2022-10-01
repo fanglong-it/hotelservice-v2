@@ -30,28 +30,35 @@ public class PictureServiceImpl implements PictureService {
     }
 
     @Override
-    public Picture savePicture(Picture picture) {
+    public CustomResponseObject savePicture(Picture picture) {
         if(!pictureRepository.existsById(picture.getId())){
-            return pictureRepository.save(picture);
+            pictureRepository.save(picture);
+            log.info("CREATE SUCCESS PICTURE");
+            return new CustomResponseObject(HttpStatus.CREATED.toString(), "Create Success");
         }
         throw new AppException(HttpStatus.ALREADY_REPORTED.value(), new CustomResponseObject(HttpStatus.ALREADY_REPORTED.toString(), "Existed id = " + picture.getId()));
     }
 
     @Override
     public Picture getPictureById(Long id) {
+        log.info("START GETTING PICTURE");
         return pictureRepository.getPictureById(id);
     }
 
     @Override
-    public Picture updatePicture(Picture picture) {
-        return pictureRepository.save(picture);
+    public CustomResponseObject updatePicture(Picture picture) {
+        pictureRepository.save(picture);
+        log.info("UPDATED PICTURE");
+        return new CustomResponseObject(HttpStatus.OK.toString(), "Update Success");
     }
 
     @Override
-    public String deletePicture(Long id) {
+    public CustomResponseObject deletePicture(Long id) {
+
         if(pictureRepository.existsById(id)){
+            log.info("EXIST ID START DELETE PICTURE");
             pictureRepository.deleteById(id);
-            return "Deleted";
+            return new CustomResponseObject(HttpStatus.GONE.toString(), "Delete Success");
         }
         throw new AppException(HttpStatus.NOT_FOUND.value(), new CustomResponseObject(HttpStatus.NOT_FOUND.toString(), "Not found id = " + id));
     }
