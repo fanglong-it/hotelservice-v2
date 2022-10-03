@@ -22,11 +22,13 @@ public class PictureServiceImpl implements PictureService {
 
     @Override
     public List<Picture> getAllPicture() {
+        log.info("START OF GET ALL PICTURE");
         return pictureRepository.findAll();
     }
 
     @Override
     public List<Picture> getPictureByPictureType(String type) {
+        log.info("START OF GET PICTURE BY PICTURE TYPE");
         return pictureRepository.findAllByPictureType(type);
     }
 

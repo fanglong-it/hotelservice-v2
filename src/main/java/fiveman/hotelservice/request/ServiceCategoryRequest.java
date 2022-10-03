@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
+import lombok.NonNull;
 
 import javax.validation.constraints.NotBlank;
 
@@ -19,8 +20,10 @@ public class ServiceCategoryRequest {
     @ApiModelProperty(position = 2)
     @NotBlank(message = "description are mandatory")
     private String description;
-    @ApiModelProperty(position = 3, required = true)
-    private String status;
+
+    @NonNull
+    private Boolean status;
+
     @ApiModelProperty(position = 4, required = true)
     private long hotel_Id;
 }

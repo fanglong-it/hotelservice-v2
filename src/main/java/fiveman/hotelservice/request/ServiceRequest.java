@@ -3,10 +3,7 @@ package fiveman.hotelservice.request;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import fiveman.hotelservice.entities.ServiceCategory;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
@@ -37,8 +34,9 @@ public class ServiceRequest {
     @NotBlank(message = "description are mandatory")
     private String description;
 
-    @ApiModelProperty(position = 5)
-    private String isExternal;
+//    @ApiModelProperty(position = 5)
+    @NonNull
+    private Boolean isExternal;
 
 
     private String createDate;

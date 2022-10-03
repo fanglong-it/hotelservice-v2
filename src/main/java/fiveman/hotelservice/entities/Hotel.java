@@ -38,7 +38,7 @@ public class Hotel{
     private String website;
     private String checkInTime;
     private String checkOutTime;
-    private boolean Breakfast;
+    private boolean breakfast;
     private int totalArea;
     private int totalRoom;
     private String description;

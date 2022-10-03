@@ -24,6 +24,8 @@ public class Picture {
     @NotBlank(message = "picture type are mandatory")
     @Min(value = 5, message = "Picture Type phai co 5 ki tu")
     private String pictureType;
+
+    private String pictureDescription;
     @NotBlank(message = "picture url are mandatory")
     private String pictureUrl;
 }
