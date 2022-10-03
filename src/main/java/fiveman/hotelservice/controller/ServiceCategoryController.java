@@ -28,7 +28,7 @@ public class ServiceCategoryController {
     ModelMapper modelMapper;
 
     @GetMapping("/serviceCategories")
-    @PreAuthorize("isAnonymous()")
+    @PreAuthorize("isAnonymous() or hasRole('ROLE_USER')")
     public ResponseEntity<List<ServiceCategory>> getServiceCategories(){
         return new ResponseEntity<>(serviceCategoryService.getServiceCategories(), HttpStatus.OK);
     }
